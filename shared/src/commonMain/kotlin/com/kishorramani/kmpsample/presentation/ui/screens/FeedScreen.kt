@@ -64,7 +64,7 @@ fun FeedScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "TechPulse",
+                        text = "KMP Sample",
                         style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
                         color = MaterialTheme.colorScheme.primary
                     )

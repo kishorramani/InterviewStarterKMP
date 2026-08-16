@@ -43,7 +43,7 @@ class FeedViewModelTest {
     fun testSelectCategoryIntentUpdatesState() = runTest {
         val client = KtorClientFactory.create()
         val apiService = ArticleApiService(client)
-        val localDb = LocalDatabase()
+        val localDb = LocalDatabase(com.kishorramani.kmpsample.data.local.room.getRoomDatabase(inMemory = true))
         val articleRepo = ArticleRepositoryImpl(apiService, localDb)
         val platformRepo = PlatformRepositoryImpl(HapticFeedback(), ShareLauncher(), UrlLauncher())
 

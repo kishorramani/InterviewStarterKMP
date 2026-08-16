@@ -17,7 +17,7 @@ class GetArticlesUseCaseTest {
     fun testGetArticlesReturnsListOfArticles() = runTest {
         val client = KtorClientFactory.create()
         val apiService = ArticleApiService(client)
-        val localDatabase = LocalDatabase()
+        val localDatabase = LocalDatabase(com.kishorramani.kmpsample.data.local.room.getRoomDatabase(inMemory = true))
         val repository = ArticleRepositoryImpl(apiService, localDatabase)
         val getArticlesUseCase = GetArticlesUseCase(repository)
 
@@ -29,7 +29,7 @@ class GetArticlesUseCaseTest {
     fun testCategoryFiltering() = runTest {
         val client = KtorClientFactory.create()
         val apiService = ArticleApiService(client)
-        val localDatabase = LocalDatabase()
+        val localDatabase = LocalDatabase(com.kishorramani.kmpsample.data.local.room.getRoomDatabase(inMemory = true))
         val repository = ArticleRepositoryImpl(apiService, localDatabase)
         val getArticlesUseCase = GetArticlesUseCase(repository)
 

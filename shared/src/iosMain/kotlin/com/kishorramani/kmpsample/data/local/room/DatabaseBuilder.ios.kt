@@ -7,7 +7,12 @@ import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSSearchPathForDirectoriesInDomains
 import platform.Foundation.NSUserDomainMask
 
-actual fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase> {
+actual fun getDatabaseBuilder(inMemory: Boolean): RoomDatabase.Builder<AppDatabase> {
+    if (inMemory) {
+        return Room.inMemoryDatabaseBuilder<AppDatabase>(
+            factory = { AppDatabaseConstructor.initialize() }
+        ).setDriver(BundledSQLiteDriver())
+    }
     val documentDirectory = NSSearchPathForDirectoriesInDomains(
         NSDocumentDirectory,
         NSUserDomainMask,

@@ -1,7 +1,10 @@
 package com.kishorramani.kmpsample
 
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Home
@@ -32,7 +35,7 @@ import com.kishorramani.kmpsample.presentation.mvi.FeedUiIntent
 import com.kishorramani.kmpsample.presentation.mvi.FeedViewModel
 import com.kishorramani.kmpsample.presentation.mvi.SettingsViewModel
 import com.kishorramani.kmpsample.presentation.navigation.NavRoute
-import com.kishorramani.kmpsample.presentation.theme.TechPulseTheme
+import com.kishorramani.kmpsample.presentation.theme.KMPSampleTheme
 import com.kishorramani.kmpsample.presentation.ui.screens.BookmarksScreen
 import com.kishorramani.kmpsample.presentation.ui.screens.DetailScreen
 import com.kishorramani.kmpsample.presentation.ui.screens.FeedScreen
@@ -47,7 +50,7 @@ fun App() {
         val settingsViewModel: SettingsViewModel = koinViewModel()
         val settingsState by settingsViewModel.uiState.collectAsState()
 
-        TechPulseTheme(darkTheme = settingsState.isDarkMode) {
+        KMPSampleTheme(darkTheme = settingsState.isDarkMode) {
             val navController = rememberNavController()
             var currentTab by remember { mutableStateOf<NavRoute>(NavRoute.Feed) }
 
@@ -110,10 +113,15 @@ fun App() {
                     }
                 }
             ) { innerPadding ->
+                val layoutDirection = LocalLayoutDirection.current
                 NavHost(
                     navController = navController,
                     startDestination = NavRoute.Feed,
-                    modifier = Modifier.padding(innerPadding)
+                    modifier = Modifier.padding(
+                        start = innerPadding.calculateStartPadding(layoutDirection),
+                        end = innerPadding.calculateEndPadding(layoutDirection),
+                        bottom = innerPadding.calculateBottomPadding()
+                    )
                 ) {
                     composable<NavRoute.Feed> {
                         val feedViewModel: FeedViewModel = koinViewModel()

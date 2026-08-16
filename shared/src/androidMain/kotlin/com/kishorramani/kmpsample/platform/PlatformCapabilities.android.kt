@@ -47,7 +47,7 @@ actual class ShareLauncher actual constructor() {
                 type = "text/plain"
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
-            val shareIntent = Intent.createChooser(sendIntent, "Share TechPulse Article").apply {
+            val shareIntent = Intent.createChooser(sendIntent, "Share KMP Sample Article").apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
             ctx.startActivity(shareIntent)
