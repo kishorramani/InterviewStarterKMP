@@ -117,7 +117,7 @@ fun SettingsScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = "PREFERENCES & CACHE",
+                text = "THEME PREFERENCES",
                 style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                 color = MaterialTheme.colorScheme.primary
             )
@@ -142,31 +142,6 @@ fun SettingsScreen(
                             checked = uiState.isDarkMode,
                             onCheckedChange = { viewModel.processIntent(SettingsUiIntent.ToggleTheme(it)) }
                         )
-                    }
-
-                    Spacer(modifier = Modifier.height(12.dp))
-
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(text = "Local Cache Size", style = MaterialTheme.typography.bodyLarge)
-                            Text(
-                                text = "${uiState.cacheSizeMb} MB cached",
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-
-                        Button(
-                            onClick = { viewModel.processIntent(SettingsUiIntent.ClearCache) },
-                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
-                        ) {
-                            Icon(imageVector = Icons.Default.DeleteSweep, contentDescription = null)
-                            Spacer(modifier = Modifier.padding(start = 4.dp))
-                            Text("Clear Cache")
-                        }
                     }
                 }
             }

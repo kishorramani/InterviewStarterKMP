@@ -17,13 +17,11 @@ import kotlinx.coroutines.launch
 
 data class SettingsUiState(
     val platformInfo: PlatformInfo? = null,
-    val isDarkMode: Boolean = true,
-    val cacheSizeMb: Double = 1.4
+    val isDarkMode: Boolean = true
 )
 
 sealed interface SettingsUiIntent {
     data class ToggleTheme(val isDark: Boolean) : SettingsUiIntent
-    data object ClearCache : SettingsUiIntent
     data object RefreshSystemMetrics : SettingsUiIntent
 }
 
@@ -58,9 +56,6 @@ class SettingsViewModel(
                 _uiState.update { it.copy(isDarkMode = intent.isDark) }
                 platformRepository.triggerHapticFeedback()
             }
-            is SettingsUiIntent.ClearCache -> {
-                clearCache()
-            }
             is SettingsUiIntent.RefreshSystemMetrics -> {
                 loadPlatformMetrics()
             }
@@ -70,14 +65,6 @@ class SettingsViewModel(
     private fun loadPlatformMetrics() {
         val info = getPlatformMetricsUseCase()
         _uiState.update { it.copy(platformInfo = info) }
-    }
-
-    private fun clearCache() {
-        viewModelScope.launch {
-            _uiState.update { it.copy(cacheSizeMb = 0.0) }
-            platformRepository.triggerHapticFeedback()
-            _uiEffect.emit(SettingsUiEffect.ShowToast("Local cache cleared!"))
-        }
     }
 
     companion object {
