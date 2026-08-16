@@ -17,6 +17,7 @@ data class ArticleEntity(
     val author: String,
     val publishedAt: String,
     val readTimeMinutes: Int,
+    val tags: String = "",
     val isBookmarked: Boolean = false
 ) {
     fun toDomain(): Article {
@@ -31,6 +32,7 @@ data class ArticleEntity(
             author = author,
             publishedAt = publishedAt,
             readTimeMinutes = readTimeMinutes,
+            tags = if (tags.isEmpty()) emptyList() else tags.split(",").map { it.trim() },
             isBookmarked = isBookmarked
         )
     }
@@ -48,6 +50,7 @@ data class ArticleEntity(
                 author = article.author,
                 publishedAt = article.publishedAt,
                 readTimeMinutes = article.readTimeMinutes,
+                tags = article.tags.joinToString(","),
                 isBookmarked = article.isBookmarked
             )
         }

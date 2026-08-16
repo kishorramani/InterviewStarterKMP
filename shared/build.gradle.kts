@@ -77,6 +77,10 @@ kotlin {
             // Room KMP & SQLite
             implementation(libs.room.runtime)
             implementation(libs.sqlite.bundled)
+
+            // Coil 3 Image Loading
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.ktor3)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

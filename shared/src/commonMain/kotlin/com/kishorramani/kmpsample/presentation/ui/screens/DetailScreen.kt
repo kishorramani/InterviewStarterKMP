@@ -1,6 +1,7 @@
 package com.kishorramani.kmpsample.presentation.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,6 +36,10 @@ import androidx.compose.ui.unit.dp
 import com.kishorramani.kmpsample.domain.model.Article
 import com.kishorramani.kmpsample.domain.repository.PlatformRepository
 import com.kishorramani.kmpsample.presentation.ui.components.CategoryBadge
+import coil3.compose.AsyncImage
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -97,6 +102,19 @@ fun DetailScreen(
                     .verticalScroll(rememberScrollState())
                     .padding(16.dp)
             ) {
+                if (article.imageUrl.isNotEmpty()) {
+                    AsyncImage(
+                        model = article.imageUrl,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(220.dp)
+                            .clip(RoundedCornerShape(12.dp)),
+                        contentScale = ContentScale.Crop
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                }
+
                 CategoryBadge(category = article.category)
 
                 Spacer(modifier = Modifier.height(12.dp))
@@ -123,6 +141,30 @@ fun DetailScreen(
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.primary
                     )
+                }
+
+                if (article.tags.isNotEmpty()) {
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        article.tags.forEach { tag ->
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(6.dp))
+                                    .background(MaterialTheme.colorScheme.primaryContainer)
+                                    .padding(horizontal = 8.dp, vertical = 4.dp)
+                            ) {
+                                Text(
+                                    text = "#$tag",
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = MaterialTheme.colorScheme.onPrimaryContainer
+                                )
+                            }
+                        }
+                    }
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))

@@ -14,5 +14,6 @@ data class Article(
     val author: String,
     val publishedAt: String,
     val readTimeMinutes: Int,
+    val tags: List<String> = emptyList(),
     val isBookmarked: Boolean = false
 )
