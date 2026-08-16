@@ -1,21 +1,22 @@
-# 🚀 TechPulse KMP — Cross-Platform Tech News App
+# 🚀 KMP Sample — Cross-Platform Developer Aggregator App
 
-**TechPulse** is an interview-ready, enterprise-grade Kotlin Multiplatform (KMP) & Compose Multiplatform application designed to showcase modern mobile architecture across **Android** and **iOS**.
+**KMP Sample** is an interview-ready, enterprise-grade Kotlin Multiplatform (KMP) & Compose Multiplatform application designed to showcase modern mobile architecture across **Android** and **iOS**.
 
 ![Kotlin](https://img.shields.io/badge/Kotlin-2.0.21-purple.svg?style=flat&logo=kotlin)
 ![Compose Multiplatform](https://img.shields.io/badge/Compose_Multiplatform-1.11.1-blue.svg?style=flat&logo=jetpackcompose)
 ![Room KMP](https://img.shields.io/badge/Room_KMP-2.7.0--alpha13-green.svg?style=flat)
-![Koin](https://img.shields.io/badge/Koin-4.0.2-orange.svg?style=flat)
+![Koin](https://img.shields.io/badge/Koin-4.2.2-orange.svg?style=flat)
 ![Ktor](https://img.shields.io/badge/Ktor-3.1.0-red.svg?style=flat)
 
 ---
 
 ## ✨ Features & Platform Capabilities
 
-- 📰 **Tech News Feed**: Real-time articles with category filtering (*All, AI & ML, Mobile, Web, DevOps*).
+- 📰 **Tech News Feed**: Real-time articles fetched dynamically from the public **Dev.to articles API** with category filtering (*All, AI & ML, Mobile, Web, DevOps*) and real tags.
+- 🖼️ **Image Loading**: Cross-platform image loading and caching using **Coil 3** dynamically rendering cover banners on article list cards and details view.
+- 💾 **Offline-First Room KMP Database**: Persistent local storage using official **Room KMP (`androidx.room`)** backed by **Bundled SQLite (`androidx.sqlite`)** with automatic destructive migration support for schema modifications.
 - 🔍 **Live Search**: Instant article search across titles, summaries, and authors.
-- 💾 **Offline-First Room KMP Database**: Persistent local storage using official **Room KMP (`androidx.room`)** backed by **Bundled SQLite (`androidx.sqlite`)** for both Android & iOS.
-- 🔖 **Instant Bookmarks**: Reactive bookmarking with instant UI state updates powered by Kotlin Coroutine `Flow`s.
+- 💾 **Bookmarks**: Reactive bookmarking with instant UI state updates powered by Kotlin Coroutine `Flow`s.
 - 🌓 **Dynamic Light / Dark Mode**: Theme toggle with state persisted across app restarts via cross-platform **KeyValueStorage** (`SharedPreferences` on Android, `NSUserDefaults` on iOS).
 - ⚙️ **Platform Inspector**: Real-time system metrics screen displaying OS version, CPU Architecture, Device Model, Kotlin version, and Compose version.
 - ⚡ **Platform Capabilities (`expect`/`actual`)**: Cross-platform Haptic Feedback, Share Launcher, and External Browser URL Launcher.
@@ -72,6 +73,7 @@ The application strictly follows **Clean Architecture** combined with the **MVI 
 | **Koin (`koin-core`, `koin-compose`)** | Cross-platform Dependency Injection |
 | **Ktor (`ktor-client-core`)** | Networking client (`OkHttp` for Android, `Darwin` for iOS) |
 | **Kotlinx Serialization** | JSON parsing & serialization |
+| **Coil 3 (`coil-compose`)** | Cross-platform network image loading & disk caching |
 | **Navigation Compose Multiplatform** | Shared type-safe screen navigation |
 
 ---

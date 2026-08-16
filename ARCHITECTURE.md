@@ -1,6 +1,6 @@
-# TechPulse KMP — System Architecture
+# KMP Sample — System Architecture
 
-**TechPulse KMP** is an **Offline-First Tech & Developer Aggregator** built to showcase enterprise-grade **Kotlin Multiplatform (KMP)** and **Compose Multiplatform** architecture.
+**KMP Sample** is an **Offline-First Tech & Developer Aggregator** built to showcase enterprise-grade **Kotlin Multiplatform (KMP)** and **Compose Multiplatform** architecture.
 
 ---
 
