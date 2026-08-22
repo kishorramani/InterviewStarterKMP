@@ -1,4 +1,4 @@
-rootProject.name = "KMPSample"
+rootProject.name = "InterviewStarterKMP"
 
 pluginManagement {
     repositories {
